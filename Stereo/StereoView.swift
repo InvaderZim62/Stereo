@@ -28,14 +28,29 @@ class StereoView: UIView {
         CGPoint(x: -Shape.width / 2, y: -Shape.height / 2),
         CGPoint(x: Shape.width / 2, y: -Shape.height / 2),
         CGPoint(x: Shape.width / 2, y: Shape.height / 2),
-        CGPoint(x: -Shape.width / 2, y: Shape.height / 2),
+        CGPoint(x: -Shape.width / 2, y: Shape.height / 2)
+    ]
+
+    let axil2D = [
+        CGPoint(x: 0, y: Shape.height / 2),
+        CGPoint(x: 0, y: -Shape.height / 2),
     ]
 
     override func draw(_ rect: CGRect) {
-        let shape3D = make3D(points2D: shape2D, z: Shape.depth, angle: rotation * CGFloat.pi / 180)
-        let stereo = createStereoFrom(shape3D)
-        drawShapeFrom(points: stereo.leftEye)
-        drawShapeFrom(points: stereo.rightEye)
+        let fixedShape = make3D(points2D: shape2D, z: Shape.depth, angle: 0)
+        let fixedStereo = createStereoFrom(fixedShape)
+        drawShapeFrom(points: fixedStereo.leftEye, lineColor: .red, fillColor: .clear)
+        drawShapeFrom(points: fixedStereo.rightEye, lineColor: .red, fillColor: .clear)
+        
+        let rotatingShape = make3D(points2D: shape2D, z: Shape.depth, angle: rotation * CGFloat.pi / 180)
+        let rotatingStereo = createStereoFrom(rotatingShape)
+        drawShapeFrom(points: rotatingStereo.leftEye, lineColor: .clear, fillColor: .blue)
+        drawShapeFrom(points: rotatingStereo.rightEye, lineColor: .clear, fillColor: .blue)
+
+//        let axilShape = make3D(points2D: axil2D, z: Shape.depth, angle: 0)
+//        let axilStereo = createStereoFrom(axilShape)
+//        drawShapeFrom(points: axilStereo.leftEye, lineColor: .red, fillColor: .clear)
+//        drawShapeFrom(points: axilStereo.rightEye, lineColor: .red, fillColor: .clear)
     }
     
     // apply rotation to create 3D coordinates (origin in center of display)
@@ -65,14 +80,17 @@ class StereoView: UIView {
         return (leftEye, rightEye)
     }
     
-    private func drawShapeFrom(points: [CGPoint]) {
+    private func drawShapeFrom(points: [CGPoint], lineColor: UIColor, fillColor: UIColor) {
         let shape = UIBezierPath()
         shape.move(to: points[0])
         for i in 1..<points.count {
             shape.addLine(to: points[i])
         }
         shape.close()
+        fillColor.setFill()
+        shape.fill()
         shape.lineWidth = 2
+        lineColor.setStroke()
         shape.stroke()
     }
 }
