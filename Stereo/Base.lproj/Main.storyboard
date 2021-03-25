@@ -30,6 +30,9 @@
                             <constraint firstItem="Bhp-I8-YXe" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Qe2-fT-xV9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stereoView" destination="Bhp-I8-YXe" id="8DZ-gz-bT1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
