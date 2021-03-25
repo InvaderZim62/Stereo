@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A6B3B4B260D2E710000479A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B3B4A260D2E710000479A /* AppDelegate.swift */; };
 		4A6B3B4D260D2E710000479A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B3B4C260D2E710000479A /* SceneDelegate.swift */; };
-		4A6B3B4F260D2E710000479A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B3B4E260D2E710000479A /* ViewController.swift */; };
+		4A6B3B4F260D2E710000479A /* StereoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B3B4E260D2E710000479A /* StereoViewController.swift */; };
 		4A6B3B52260D2E710000479A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6B3B50260D2E710000479A /* Main.storyboard */; };
 		4A6B3B54260D2E720000479A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6B3B53260D2E720000479A /* Assets.xcassets */; };
 		4A6B3B57260D2E720000479A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6B3B55260D2E720000479A /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		4A6B3B47260D2E710000479A /* Stereo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stereo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6B3B4A260D2E710000479A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A6B3B4C260D2E710000479A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4A6B3B4E260D2E710000479A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4A6B3B4E260D2E710000479A /* StereoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoViewController.swift; sourceTree = "<group>"; };
 		4A6B3B51260D2E710000479A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A6B3B53260D2E720000479A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A6B3B56260D2E720000479A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +56,23 @@
 		4A6B3B49260D2E710000479A /* Stereo */ = {
 			isa = PBXGroup;
 			children = (
-				4A6B3B4A260D2E710000479A /* AppDelegate.swift */,
-				4A6B3B4C260D2E710000479A /* SceneDelegate.swift */,
-				4A6B3B4E260D2E710000479A /* ViewController.swift */,
 				4A6B3B50260D2E710000479A /* Main.storyboard */,
-				4A6B3B53260D2E720000479A /* Assets.xcassets */,
-				4A6B3B55260D2E720000479A /* LaunchScreen.storyboard */,
+				4A6B3B4E260D2E710000479A /* StereoViewController.swift */,
+				4A6B3B5F260D2E860000479A /* Supporting Files */,
 				4A6B3B58260D2E720000479A /* Info.plist */,
 			);
 			path = Stereo;
+			sourceTree = "<group>";
+		};
+		4A6B3B5F260D2E860000479A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A6B3B4A260D2E710000479A /* AppDelegate.swift */,
+				4A6B3B4C260D2E710000479A /* SceneDelegate.swift */,
+				4A6B3B53260D2E720000479A /* Assets.xcassets */,
+				4A6B3B55260D2E720000479A /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A6B3B4F260D2E710000479A /* ViewController.swift in Sources */,
+				4A6B3B4F260D2E710000479A /* StereoViewController.swift in Sources */,
 				4A6B3B4B260D2E710000479A /* AppDelegate.swift in Sources */,
 				4A6B3B4D260D2E710000479A /* SceneDelegate.swift in Sources */,
 			);
