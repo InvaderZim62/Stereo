@@ -19,6 +19,7 @@ class StereoViewController: UIViewController {
     private var simulationTimer = Timer()
     
     @IBOutlet weak var stereoView: StereoView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,5 +36,9 @@ class StereoViewController: UIViewController {
         let deltaAngle = Constants.frameTime / Constants.rotationPeriod * 360  // degrees
         rotation = (rotation + deltaAngle).truncatingRemainder(dividingBy: 360)
         stereoView.rotation = CGFloat(rotation)
+    }
+    
+    @IBAction func selectedSegmentedControl(_ sender: UISegmentedControl) {
+        stereoView.selection = segmentedControl.selectedSegmentIndex
     }
 }

@@ -23,6 +23,7 @@ struct Shape {
 class StereoView: UIView {
     
     var rotation: CGFloat = 0 { didSet { setNeedsDisplay() } }  // degrees
+    var selection = 0
     
     // origin at screen center
     let shape2D = [
@@ -46,20 +47,30 @@ class StereoView: UIView {
         drawShapeFrom(points: fixedStereo.leftEye, lineColor: .red, fillColor: .clear)
         drawShapeFrom(points: fixedStereo.rightEye, lineColor: .red, fillColor: .clear)
         
-//        // rotating wall
-//        let rotatingShape = make3D(points2D: shape2D, angle: rotation * CGFloat.pi / 180)
-//        let rotatingStereo = createStereoPointsFrom(rotatingShape)
-//        drawShapeFrom(points: rotatingStereo.leftEye, lineColor: .clear, fillColor: .blue)
-//        drawShapeFrom(points: rotatingStereo.rightEye, lineColor: .clear, fillColor: .blue)
-        
-        // circles moving in and out (90 degrees out of phase with each other)
-//        points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * sin((rotation - 90 * CGFloat($0)) * CGFloat.pi / 180) }
-        // circles moving in and out in phase, but with different amplitudes
-        points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * (1 + 0.25 * CGFloat($0)) * sin(rotation * CGFloat.pi / 180) }
-        let points3D = make3D(points2D: points2D, angle: 0)
-        let stereoPoints = createStereoPointsFrom(points3D)
-        drawCirclesWith(centers: stereoPoints.leftEye, color: .black)
-        drawCirclesWith(centers: stereoPoints.rightEye, color: .black)
+        switch selection {
+        case 0:
+            // circles moving in and out in phase, but with different amplitudes
+            points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * (1 + 0.25 * CGFloat($0)) * sin(rotation * CGFloat.pi / 180) }
+            let points3D = make3D(points2D: points2D, angle: 0)
+            let stereoPoints = createStereoPointsFrom(points3D)
+            drawCirclesWith(centers: stereoPoints.leftEye, color: .black)
+            drawCirclesWith(centers: stereoPoints.rightEye, color: .black)
+        case 1:
+            // circles moving in and out (90 degrees out of phase with each other)
+            points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * sin((rotation - 90 * CGFloat($0)) * CGFloat.pi / 180) }
+            let points3D = make3D(points2D: points2D, angle: 0)
+            let stereoPoints = createStereoPointsFrom(points3D)
+            drawCirclesWith(centers: stereoPoints.leftEye, color: .black)
+            drawCirclesWith(centers: stereoPoints.rightEye, color: .black)
+        case 2:
+            // rotating wall
+            let rotatingShape = make3D(points2D: shape2D, angle: rotation * CGFloat.pi / 180)
+            let rotatingStereo = createStereoPointsFrom(rotatingShape)
+            drawShapeFrom(points: rotatingStereo.leftEye, lineColor: .clear, fillColor: .blue)
+            drawShapeFrom(points: rotatingStereo.rightEye, lineColor: .clear, fillColor: .blue)
+        default:
+            break
+        }
     }
     
     // apply rotation to create 3D coordinates (origin in center of display)
