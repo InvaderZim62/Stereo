@@ -10,4 +10,4 @@ until the two red squares become three.  The 3D effect takes place in the middle
 Here are my hand-written notes, showing how I computed the x and y screen coordinates for the left and
 right eyes, for a single point at some absolute x, y, and z position.
 
-![Stero notes](https://github.com/InvaderZim62/Stereo/assets/34785252/710eb6ba-038c-4bec-aa8f-ba802227b586)
+![Stero notes](https://github.com/InvaderZim62/Stereo/assets/34785252/ad816aa0-3bec-498e-a4ed-bc671a87baf3)
