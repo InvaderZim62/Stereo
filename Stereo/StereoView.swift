@@ -8,7 +8,7 @@
 import UIKit
 
 struct Geometry {
-    static let pointsPerInch: CGFloat = 163  // iPhone 6S (each device is different)
+    static let pointsPerInch: CGFloat = 163  // iPhone 8 (each device is different)
     static let noseToEye: CGFloat = 1.2 * Geometry.pointsPerInch  // points
     static let noseToPhone: CGFloat = 8 * Geometry.pointsPerInch  // points
 }
@@ -53,7 +53,9 @@ class StereoView: UIView {
 //        drawShapeFrom(points: rotatingStereo.rightEye, lineColor: .clear, fillColor: .blue)
         
         // circles moving in and out (90 degrees out of phase with each other)
-        points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * sin((rotation - 90 * CGFloat($0)) * CGFloat.pi / 180) }
+//        points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * sin((rotation - 90 * CGFloat($0)) * CGFloat.pi / 180) }
+        // circles moving in and out in phase, but with different amplitudes
+        points2D.indices.forEach { points2D[$0].z = Shape.averageDepth + Shape.depthAmplitude * (1 + 0.25 * CGFloat($0)) * sin(rotation * CGFloat.pi / 180) }
         let points3D = make3D(points2D: points2D, angle: 0)
         let stereoPoints = createStereoPointsFrom(points3D)
         drawCirclesWith(centers: stereoPoints.leftEye, color: .black)
@@ -71,7 +73,7 @@ class StereoView: UIView {
         return points3D
     }
 
-    // apply perspective to creata 2D image for left or right eye (origin in upper left corner of display)
+    // apply perspective to create a 2D image for left or right eye (origin in upper left corner of display)
     private func createStereoPointsFrom(_ points3D: [(x: CGFloat, y: CGFloat, z: CGFloat)]) -> (leftEye: [CGPoint], rightEye: [CGPoint]) {
         let midPoint = CGPoint(x: bounds.midX, y: bounds.midY)
         var leftEye = [CGPoint]()
